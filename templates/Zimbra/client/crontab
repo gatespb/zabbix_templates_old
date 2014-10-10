@@ -1,0 +1,2 @@
+# Zabbix check
+*/5 * * * * root   /usr/local/sbin/zimbra_postfix.sh 1>/dev/null 2>/dev/null

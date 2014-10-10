@@ -1,0 +1,22 @@
+#!/bin/bash
+APCINFO=$(apcaccess status)
+case "$1" in
+bcharge) echo -e "${APCINFO}" | sed -n 's/BCHARGE.*[:].\([0-9]*\).*$/\1/p'
+    ;;
+ status) s=$(echo -e "${APCINFO}" | sed -n 's/STATUS.*[:].\([A-Z]*\).*$/\1/p')
+    # Так как статус - текстовый параметр, а нам проще работать с числом, преобразуем его! Если все хорошо и упс ONLINE - выдаем 1
+    if [ $s == "ONLINE" ]; then
+        echo 1
+    else
+        # Если что-то не так - ноль
+        echo 0
+    fi
+    ;;
+loadpct) echo -e "${APCINFO}" | sed -n 's/^LOADPCT.*[:][ ]*\([0-9]*\.[0-9]*\).*$/\1/p'
+    ;;
+  linev) echo -e "${APCINFO}" | sed -n 's/^LINEV.*[:][ ]*\([0-9]*\.[0-9]*\).*$/\1/p'
+    ;;
+timeleft) echo -e "${APCINFO}" | sed -n 's/^TIMELEFT.*[:][ ]*\([0-9]*\.[0-9]*\).*$/\1/p'
+    ;;
+esac
+exit 0
