@@ -1,0 +1,91 @@
+http://www.quadstor.com/support/142-understanding-vdisk-and-disk-statistics.html
+
+VDisk Statistics
+
+To view the statistics for a VDisk, from "Virtual Disks", click on the "View" link under Statistics for the VDisk. A Value with a suffix GB indicates gigabytes, MB megabytes etc.
+
+The statistics for a VDisk are incrementing counters and can be reset
+
+The following are the statistics maintained for a VDisk
+
+Write Size: The amount of data written to the VDisk
+
+Write Ops: The number of write commands
+
+Read Size: The amount of data read from the VDisk
+
+Read Ops: The number of read commands
+
+Unaligned Size: This the amount of write data which is not aligned on a 4K boundary.
+
+For example a write size of 512, 1024, 4068 etc. This applies to VDisk with 512e enabled
+
+Data Deduped: The amount of write data that has been deduplicated
+
+Data Unmapped: The amount of unmap/discard/trim data
+
+Unmap Ops: The number of unmap commands
+
+Blocks Zeroed: The amount of data zeroed as a result of a block zeroing command
+
+Uncompressed Size: The amount of data written to disk in an uncompressed form
+
+Compressed Size: The amount of data written to disk in a compressed form
+
+Compression Hits: The amount of data that was successfully compressed
+
+Compression Misses: The amount of data for which an attempt to compress was unsuccessful
+
+Verify Hits: With verification enabled, this is the amount of duplicate data for which verification was successful
+
+Verify Misses: With verification enabled, this is the amount of duplicate data for which verification was unsucessful (Hash collisions)
+
+Verify Errors: This records the errors during verification process if any (read errors of the previous duplicate block)
+
+CW Hits: Atomic Test and Set commands which were successful
+
+CW MIsses: Atomic Test and Set commands which were unsuccessful
+
+XCopy Write: The data written to the VDisk for VAAI Full Clone / XCopy (hardware offload) commands
+
+XCopy Read: The data read from the VDisk for VAAI Full Clone / XCopy (hardware offload) commands
+
+XCopy Ops: The number of VAAI Full Clone / XCopy commands recevied by the VDisk
+
+Write Same Size: The total size of zero data written as a result of VAAI Write Same / Block Zero commands
+
+Write Same Ops: The number of VAAI Write Same / Block Zero commands received by the VDisk
+
+Populate Token Size: (Commercial Edition) The read size of Populate Token commands (Offloaded Data Transfers / ODX)
+
+Populate Token Ops: (Commercial Edition) The number of Populate Token commands (Offloaded Data Transfers / ODX) received by the VDisk
+
+Write Using Token Size: (Commercial Edition) The read size of Write Using Token commands (Offloaded Data Transfers / ODX)
+
+Write Using Token Ops: (Commercial Edition) The number of Write Using Token commands (Offloaded Data Transfers / ODX) received by the VDisk
+
+The transfer rate statistics such as Write Transfer Rate, Read Tranfer Rate etc. have been removed. The values reported by them were incorrect.
+
+Disk Statistics
+
+In the case of a Disk, the recorded statistics show the amount of disk space used, the amount of duplicated data the space corresponds to etc.
+
+The following are the recorded statistics
+
+Total Size: Total disk space configured
+
+Used Size: Total disk space used
+
+VDisk Usage: Total disk space used by VDisks. This excludes metadata used for other purposes
+
+Deduped Size: The amount of write data that has been deduplicated
+
+Uncompressed Size: The amount of data stored in an uncompressed form
+
+Compressed Size: The amount of data stored in a compressed form
+
+Compression Hits: The amount of data that was successfully compressed
+
+Dedupe Ratio: The total space savings ratio. This is calculated as below
+
+(Deduped Size + Uncompressed Size + Compression Hits) / (Uncompressed Size + Compressed Size)
