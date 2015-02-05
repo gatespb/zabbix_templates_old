@@ -7,9 +7,9 @@
 static void
 print_usage(void)
 {
-	fprintf(stdout, "qstat usage [v0.1.13]: \n");
-	fprintf(stdout, "qstat -l list vdisks\n");
-	fprintf(stdout, "qstat -s <source vdisk name> show vdisk statistics\n");
+	fprintf(stdout, "qstat usage [v0.1.14]: \n");
+	fprintf(stdout, "qstat -l list vdisks\n    [output] VDisk ID;Name;Pool;Serial Number;Size;Status (D E C V);VDisk status (Offline, Deletion in progress, etc...)\n");
+	fprintf(stdout, "qstat -s <source vdisk name> show vdisk statistics for zabbix\n    [output] Uncompressed Size (bytes);Write Size (bytes);Write Ops;Read Size (bytes);Read Ops\n");
     fprintf(stdout, "qstat -S <source vdisk name> show vdisk extended statistics\n");
 	fprintf(stdout, "Show VDisk statistics\n");
 	exit(0);
