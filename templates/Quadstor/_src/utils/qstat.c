@@ -9,6 +9,7 @@ print_usage(void)
 {
 	fprintf(stdout, "qstat usage [v0.1.14]: \n");
 	fprintf(stdout, "qstat -l list vdisks\n    [output] VDisk ID;Name;Pool;Serial Number;Size;Status (D E C V);VDisk status (Offline, Deletion in progress, etc...)\n");
+    fprintf(stdout, "qstat -d list vdisks for zabbix\n");
 	fprintf(stdout, "qstat -s <source vdisk name> show vdisk statistics for zabbix\n    [output] Uncompressed Size (bytes);Write Size (bytes);Write Ops;Read Size (bytes);Read Ops\n");
     fprintf(stdout, "qstat -S <source vdisk name> show vdisk extended statistics\n");
 	fprintf(stdout, "Show VDisk statistics\n");
@@ -343,6 +344,39 @@ skip:
 	return 0;
 }
 
+void listvdiskz()
+{
+	int retval;
+	struct tdisk_list tdisk_list;
+	struct tdisk_info *tdisk_info;
+    
+	retval = tl_client_list_vdisks(&tdisk_list, MSG_ID_LIST_TDISK);
+	if (retval != 0) {
+		fprintf (stderr, "Virtual Disks: Getting VDisk list failed\n");
+	}
+	if (TAILQ_EMPTY(&tdisk_list))
+		goto skip;
+    printf ("{\n\t\"data\":[\n");
+	TAILQ_FOREACH(tdisk_info, &tdisk_list, q_entry) {
+		if (tdisk_info->disabled == VDISK_DELETED)
+			continue;
+        else if (tdisk_info->disabled == VDISK_DELETED)
+			continue;
+		else if (tdisk_info->disabled == VDISK_DELETING && tdisk_info->delete_error == -1)
+			continue;
+		else if (tdisk_info->disabled == VDISK_DELETING && tdisk_info->delete_error)
+			continue;
+		else if (tdisk_info->disabled == VDISK_DELETING)
+			continue;
+		else if (!tdisk_info->online)
+			continue;
+		printf ("\t\t{\n\t\t\t\"{#VDISKID}\":\"%u\",\n\t\t\t\"{#VDISKNAME}\":\"%s\"\n\t\t},", tdisk_info->target_id, tdisk_info->name);
+	}
+    printf ("]}\n");
+skip:
+	tdisk_list_free(&tdisk_list);
+}
+
 int main (int argc, char **argv)
 {
   int c;
@@ -352,13 +386,16 @@ int main (int argc, char **argv)
       exit(1);
   }
 
-  while ((c = getopt (argc, argv, "hlS:s:")) != -1) {
+  while ((c = getopt (argc, argv, "hldS:s:")) != -1) {
     switch (c) {
       case 'h':
         print_usage();
         break;
       case 'l':
         listvdisk();
+        break;
+      case 'd':
+        listvdiskz();
         break;
       case 's':
         get_vdiskstat(optarg);
