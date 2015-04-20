@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-04-10T07:37:14Z</date>
+    <date>2015-04-20T14:44:33Z</date>
     <groups>
         <group>
-            <name>QUADStor</name>
+            <name>Templates</name>
         </group>
     </groups>
     <templates>
         <template>
-            <template>Template QUADStor</template>
+            <template>template-quadstorvirt</template>
             <name>Template QUADStor</name>
             <description>QUADStor:&#13;
 http://www.quadstor.com/&#13;
@@ -18,7 +18,7 @@ QUADStor zabbix template:&#13;
 https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</description>
             <groups>
                 <group>
-                    <name>QUADStor</name>
+                    <name>Templates</name>
                 </group>
             </groups>
             <applications>
@@ -65,7 +65,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             </condition>
                         </conditions>
                     </filter>
-                    <lifetime>30</lifetime>
+                    <lifetime>3</lifetime>
                     <description>QUADStor VDisk discovery</description>
                     <item_prototypes>
                         <item_prototype>
@@ -124,7 +124,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
-                            <units>Байт</units>
+                            <units>B/s</units>
                             <delta>1</delta>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
@@ -210,7 +210,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             <status>0</status>
                             <value_type>3</value_type>
                             <allowed_hosts/>
-                            <units>Байт</units>
+                            <units>B/s</units>
                             <delta>1</delta>
                             <snmpv3_contextname/>
                             <snmpv3_securityname/>
@@ -269,7 +269,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template QUADStor</host>
+                                        <host>template-quadstorvirt</host>
                                         <key>quadstor.readsize[{#VDISKNAME}]</key>
                                     </item>
                                 </graph_item>
@@ -281,7 +281,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>Template QUADStor</host>
+                                        <host>template-quadstorvirt</host>
                                         <key>quadstor.writesize[{#VDISKNAME}]</key>
                                     </item>
                                 </graph_item>
