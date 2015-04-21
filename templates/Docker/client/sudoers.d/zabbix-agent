@@ -1,0 +1,1 @@
+zabbix ALL = NOPASSWD:  /usr/bin/docker ps -a, /usr/bin/docker ps -q, /usr/bin/docker ps -a -q
