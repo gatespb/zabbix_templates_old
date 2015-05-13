@@ -1,2 +1,2 @@
 Defaults:zabbix !requiretty
-zabbix ALL = NOPASSWD: /quadstor/bin/qstat, /quadstor/bin/vdconfig -l
+zabbix ALL = NOPASSWD: /quadstor/bin/qstat, /quadstor/bin/vdconfig -l, /quadstor/bin/vdconfig -l -v *
