@@ -1,0 +1,34 @@
+diff --git "a/quadstor\\scctl\\vdconfig.c" "b/quadstor\\scctl\\vdconfig.c"
+index f030d36..17c18b5 100644
+--- "a/quadstor\\scctl\\vdconfig.c"
++++ "b/quadstor\\scctl\\vdconfig.c"
+@@ -270,17 +270,21 @@ vdconfig_list_vdisk(char *name)
+ 	sprintf(databuf, "%s", vdiskconf.enable_verify ? "Yes" : "No");
+ 	printf("%24s %-32s\n", "Verfication:", databuf);
+ 
+-	get_data_str(stats.write_size, databuf);
+-	printf("%24s %-32s\n", "Write Size:", databuf);
++	//get_data_str(stats.write_size, databuf);
++	//printf("%24s %-32s\n", "Write Size:", databuf);
++    printf("%24s %llu\n", "Write Size:", (unsigned long long)stats.write_size);
+ 
+-	sprintf(databuf, "%llu", (unsigned long long)stats.write_cmds);
+-	printf("%24s %-32s\n", "Write Ops:", databuf);
++	//sprintf(databuf, "%llu", (unsigned long long)stats.write_cmds);
++	//printf("%24s %-32s\n", "Write Ops:", databuf);
++    printf("%24s %llu\n", "Write Ops:", (unsigned long long)stats.write_cmds);
+ 
+-	get_data_str(stats.read_size, databuf);
+-	printf("%24s %-32s\n", "Read Size:", databuf);
++	//get_data_str(stats.read_size, databuf);
++	//printf("%24s %-32s\n", "Read Size:", databuf);
++    printf("%24s %llu\n", "Read Size:", (unsigned long long)stats.read_size);
+ 
+-	sprintf(databuf, "%llu", (unsigned long long)stats.read_cmds);
+-	printf("%24s %-32s\n", "Read Ops:", databuf);
++	//sprintf(databuf, "%llu", (unsigned long long)stats.read_cmds);
++	//printf("%24s %-32s\n", "Read Ops:", databuf);
++    printf("%24s %llu\n", "Read Ops:", (unsigned long long)stats.read_cmds);
+ 
+ 	get_data_str(stats.unaligned_size, databuf);
+ 	printf("%24s %-32s\n", "Unaligned Size:", databuf);
