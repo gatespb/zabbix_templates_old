@@ -1,11 +1,14 @@
 #!/bin/bash
 
 unset NUMBER
+UPDT=300
 FILE="/tmp/iostat.cache"
 DISK=$1
 METRIC=$2
 
 [ -z "$1" -o -z "$2" ] && { echo "Unknown parameters"; exit 1; }
+[ ! -s "${FILE}" ] && { echo "Check file ${FILE}"; exit 1; }
+[ $[$(date +%s) - $(stat --printf=%Y "${FILE}")] -gt ${UPDT} ] && { echo "Check file ${FILE}. Not updated > ${UPDT}"; exit 1; }
 
 case "$2" in
     "rrqm/s")   NUMBER=2;;
