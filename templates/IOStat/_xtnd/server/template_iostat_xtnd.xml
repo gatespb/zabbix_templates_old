@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-04-20T09:46:40Z</date>
+    <date>2015-05-19T13:25:49Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -9,9 +9,9 @@
     </groups>
     <templates>
         <template>
-            <template>template-iostat</template>
-            <name>Template iostat</name>
-            <description/>
+            <template>template-iostat-xtnd</template>
+            <name>Template iostat (xtnd)</name>
+            <description>Extended iostat template</description>
             <groups>
                 <group>
                     <name>Templates</name>
@@ -22,51 +22,7 @@
                     <name>iostat</name>
                 </application>
             </applications>
-            <items>
-                <item>
-                    <name>Iostat: Collect statistics</name>
-                    <type>0</type>
-                    <snmp_community/>
-                    <multiplier>0</multiplier>
-                    <snmp_oid/>
-                    <key>iostat.collect</key>
-                    <delay>60</delay>
-                    <history>7</history>
-                    <trends>365</trends>
-                    <status>0</status>
-                    <value_type>3</value_type>
-                    <allowed_hosts/>
-                    <units/>
-                    <delta>0</delta>
-                    <snmpv3_contextname/>
-                    <snmpv3_securityname/>
-                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                    <snmpv3_authpassphrase/>
-                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                    <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
-                    <params/>
-                    <ipmi_sensor/>
-                    <data_type>0</data_type>
-                    <authtype>0</authtype>
-                    <username/>
-                    <password/>
-                    <publickey/>
-                    <privatekey/>
-                    <port/>
-                    <description/>
-                    <inventory_link>0</inventory_link>
-                    <applications>
-                        <application>
-                            <name>iostat</name>
-                        </application>
-                    </applications>
-                    <valuemap/>
-                    <logtimefmt/>
-                </item>
-            </items>
+            <items/>
             <discovery_rules>
                 <discovery_rule>
                     <name>Disks discovery</name>
@@ -114,7 +70,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},avgqu-sz]</key>
+                            <key>iostat.value[{#HARDDISK},avgqu-sz]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -157,7 +113,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},avgrq-sz]</key>
+                            <key>iostat.value[{#HARDDISK},avgrq-sz]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -200,7 +156,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},await]</key>
+                            <key>iostat.value[{#HARDDISK},await]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -243,7 +199,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},r_await]</key>
+                            <key>iostat.value[{#HARDDISK},r_await]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -286,7 +242,7 @@
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},rkb/s]</key>
+                            <key>iostat.value[{#HARDDISK},rkB/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -329,7 +285,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},r/s]</key>
+                            <key>iostat.value[{#HARDDISK},r/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -372,7 +328,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},rrqm/s]</key>
+                            <key>iostat.value[{#HARDDISK},rrqm/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -415,7 +371,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},util]</key>
+                            <key>iostat.value[{#HARDDISK},util]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -458,7 +414,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},w_await]</key>
+                            <key>iostat.value[{#HARDDISK},w_await]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -501,7 +457,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},w/s]</key>
+                            <key>iostat.value[{#HARDDISK},w/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -544,7 +500,7 @@
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},wrqm/s]</key>
+                            <key>iostat.value[{#HARDDISK},wrqm/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -587,7 +543,7 @@
                             <snmp_community/>
                             <multiplier>1</multiplier>
                             <snmp_oid/>
-                            <key>iostat.metric[{#HARDDISK},wkb/s]</key>
+                            <key>iostat.value[{#HARDDISK},wkB/s]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -653,8 +609,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},await]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},await]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -665,8 +621,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},r_await]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},r_await]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -677,8 +633,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},w_await]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},w_await]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -709,8 +665,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},rrqm/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},rrqm/s]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -721,8 +677,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},wrqm/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},wrqm/s]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -753,8 +709,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},avgqu-sz]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},avgqu-sz]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -765,8 +721,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},avgrq-sz]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},avgrq-sz]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -797,8 +753,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},wkb/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},wkB/s]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -809,8 +765,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},rkb/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},rkB/s]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -841,8 +797,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},w/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},w/s]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -853,8 +809,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},util]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},util]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -865,8 +821,8 @@
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
-                                        <host>template-iostat</host>
-                                        <key>iostat.metric[{#HARDDISK},r/s]</key>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},r/s]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -880,16 +836,4 @@
             <screens/>
         </template>
     </templates>
-    <triggers>
-        <trigger>
-            <expression>{template-iostat:iostat.collect.last(0)}=1</expression>
-            <name>Iostat statistics not collected on {HOSTNAME}</name>
-            <url/>
-            <status>0</status>
-            <priority>2</priority>
-            <description/>
-            <type>0</type>
-            <dependencies/>
-        </trigger>
-    </triggers>
 </zabbix_export>

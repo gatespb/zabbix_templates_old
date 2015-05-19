@@ -1,14 +1,19 @@
-#!/usr/bin/env bash
-# Description:	Script for iostat monitoring
-# Author:	Epikhin Mikhail michael@nomanlab.org
-# Revision 1:	Lesovsky A.V. lesovsky@gmail.com
+#!/bin/bash
 
-SECONDS=$2
-TOFILE=$1
-IOSTAT="/usr/bin/iostat"
+PIDFILE="/var/run/iostat-collect.pid"
 
-[[ $# -lt 2 ]] && { echo "FATAL: some parameters not specified"; exit 1; }
+[ -s "${PIDFILE}" ] && exit 0
 
-DISK=$($IOSTAT -x 1 $SECONDS | awk 'BEGIN {check=0;} {if(check==1 && $1=="avg-cpu:"){check=0}if(check==1 && $1!=""){print $0}if($1=="Device:"){check=1}}' | tr '\n' '|')
-echo $DISK | sed 's/|/\n/g' > $TOFILE
-echo 0
+echo $$ >> "${PIDFILE}"
+
+SECONDS=50
+FILE=/tmp/iostat.cache
+IOSTAT=/usr/bin/iostat
+
+DISKIO=$(${IOSTAT} -k -x 1 ${SECONDS} | awk 'BEGIN{check=0}; {if($1==""){check=0}; if(check==1){print $0} if($1=="Device:"){check=1}}')
+SKIP=$(echo -e "${DISKIO}" | awk '!x[$1]++' | wc -l)
+echo -e "${DISKIO}" | tail -n +${SKIP} | tr -s ' ' > ${FILE}
+
+rm -f "${PIDFILE}"
+
+exit 0
