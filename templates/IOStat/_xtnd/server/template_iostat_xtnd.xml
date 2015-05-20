@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>2.0</version>
-    <date>2015-05-19T13:25:49Z</date>
+    <date>2015-05-20T08:37:32Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -184,6 +184,92 @@
                             <privatekey/>
                             <port/>
                             <description>The average time (in milliseconds) for I/O requests issued to the device to be served. This includes the time spent by the requests in queue and the time spent servicing them.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>iostat</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Disk {#HARDDISK} max read from device per second</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>1</multiplier>
+                            <snmp_oid/>
+                            <key>iostat.value[{#HARDDISK},MrkB/s]</key>
+                            <delay>60</delay>
+                            <history>7</history>
+                            <trends>365</trends>
+                            <status>1</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>B/s</units>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1024</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The number of max kbytes read from the device per second</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>iostat</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Disk {#HARDDISK} max written to the device per second</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>1</multiplier>
+                            <snmp_oid/>
+                            <key>iostat.value[{#HARDDISK},MwkB/s]</key>
+                            <delay>60</delay>
+                            <history>7</history>
+                            <trends>365</trends>
+                            <status>1</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>B/s</units>
+                            <delta>0</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1024</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The number of kilobytes written (max) to the device per second.</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -748,7 +834,7 @@
                                 <graph_item>
                                     <sortorder>1</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>CC0000</color>
+                                    <color>DD0000</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
@@ -760,13 +846,37 @@
                                 <graph_item>
                                     <sortorder>0</sortorder>
                                     <drawtype>0</drawtype>
-                                    <color>0000CC</color>
+                                    <color>00AA00</color>
                                     <yaxisside>0</yaxisside>
                                     <calc_fnc>2</calc_fnc>
                                     <type>0</type>
                                     <item>
                                         <host>template-iostat-xtnd</host>
                                         <key>iostat.value[{#HARDDISK},rkB/s]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>2</sortorder>
+                                    <drawtype>3</drawtype>
+                                    <color>00AA00</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},MrkB/s]</key>
+                                    </item>
+                                </graph_item>
+                                <graph_item>
+                                    <sortorder>3</sortorder>
+                                    <drawtype>3</drawtype>
+                                    <color>DD0000</color>
+                                    <yaxisside>0</yaxisside>
+                                    <calc_fnc>2</calc_fnc>
+                                    <type>0</type>
+                                    <item>
+                                        <host>template-iostat-xtnd</host>
+                                        <key>iostat.value[{#HARDDISK},MwkB/s]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
