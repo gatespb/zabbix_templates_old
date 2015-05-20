@@ -1,0 +1,2 @@
+# Add to end:
+/usr/local/sbin/zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf
