@@ -1,2 +1,3 @@
 # Add to end:
 /usr/local/sbin/zabbix_agentd -c /etc/zabbix/zabbix_agentd.conf
+iptables -I RH-Firewall-1-INPUT -m tcp -p tcp -s <ZABBIX_IP>/32 --dport 10050 -j ACCEPT
