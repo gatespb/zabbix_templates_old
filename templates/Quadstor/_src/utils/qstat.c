@@ -4,21 +4,18 @@
 #include <unistd.h>
 #include <tlclntapi.h>
 
-static void
-print_usage(void)
-{
+static void print_usage(void) {
 	fprintf(stdout, "qstat usage [v0.1.14]: \n");
 	fprintf(stdout, "qstat -l list vdisks\n    [output] VDisk ID;Name;Pool;Serial Number;Size;Status (D E C V);VDisk status (Offline, Deletion in progress, etc...)\n");
     fprintf(stdout, "qstat -d list vdisks for zabbix\n");
+    fprintf(stdout, "qstat -f total size;used size - for monitoring free space\n");
 	fprintf(stdout, "qstat -s <source vdisk name> show vdisk statistics for zabbix\n    [output] Uncompressed Size (bytes);Write Size (bytes);Write Ops;Read Size (bytes);Read Ops\n");
     fprintf(stdout, "qstat -S <source vdisk name> show vdisk extended statistics\n");
 	fprintf(stdout, "Show VDisk statistics\n");
 	exit(0);
 }
 
-uint32_t
-get_vdiskid(char *target_name)
-{
+uint32_t get_vdiskid(char *target_name) {
 	int retval;
 	struct tdisk_list tdisk_list;
 	struct tdisk_info *tdisk_info;
@@ -46,9 +43,7 @@ skip:
 	return 0;
 }
 
-int
-get_vdiskstat(char *target_name)
-{
+int get_vdiskstat(char *target_name) {
     FILE *fp;
 	char tempfile[MKSTEMP_NAMELEN];
 	int fd;
@@ -91,9 +86,7 @@ get_vdiskstat(char *target_name)
 
 // ----------------------------------------- viewtdisk ---------------------------------------- //
 
-int
-viewtdisk(char *target_name)
-{
+int viewtdisk(char *target_name) {
 	FILE *fp;
 	// llist entries;
 	char tempfile[MKSTEMP_NAMELEN];
@@ -344,8 +337,7 @@ skip:
 	return 0;
 }
 
-void listvdiskz()
-{
+void listvdiskz() {
 	int retval;
 	struct tdisk_list tdisk_list;
 	struct tdisk_info *tdisk_info;
@@ -377,6 +369,45 @@ skip:
 	tdisk_list_free(&tdisk_list);
 }
 
+int get_storinfo() {
+    int retval;
+	struct d_list dlist;
+	struct d_list configured_dlist;
+	struct physdisk *disk;
+	uint64_t dedupe_blocks = 0, total_blocks = 0;
+	uint64_t uncompressed_size = 0;
+	uint64_t compressed_size = 0;
+	uint64_t compression_hits = 0;
+	uint64_t used = 0, reserved = 0, total = 0;
+    
+    TAILQ_INIT(&dlist);
+	TAILQ_INIT(&configured_dlist);
+    retval = tl_client_list_disks(&configured_dlist, MSG_ID_GET_CONFIGURED_DISKS);
+	if (retval != 0) {
+		fprintf(stderr, "Unable to get configured disk list\n");
+	}
+	retval = tl_client_list_disks(&dlist, MSG_ID_LIST_DISKS);
+	if (retval != 0) {
+		fprintf(stderr, "Unable to get disk list\n");
+	}
+    TAILQ_FOREACH(disk, &configured_dlist, q_entry) {
+		if (disk->info.online) {
+			total_blocks  += disk->total_blocks;
+			dedupe_blocks  += disk->dedupe_blocks;
+			uncompressed_size  += disk->uncompressed_size;
+			compressed_size  += disk->compressed_size;
+			compression_hits  += disk->compression_hits;
+			used += disk->used;
+			total += disk->size;
+			reserved += disk->reserved;
+			continue;
+		}
+    }
+    
+    printf("%" PRIu64 ";%" PRIu64 ";%d;%d\n", total, used, (int)((used*100)/total), (int)(100-(used*100)/total));
+    return 0;
+}
+
 int main (int argc, char **argv)
 {
   int c;
@@ -386,7 +417,7 @@ int main (int argc, char **argv)
       exit(1);
   }
 
-  while ((c = getopt (argc, argv, "hldS:s:")) != -1) {
+  while ((c = getopt (argc, argv, "hldfS:s:")) != -1) {
     switch (c) {
       case 'h':
         print_usage();
@@ -399,6 +430,9 @@ int main (int argc, char **argv)
         break;
       case 's':
         get_vdiskstat(optarg);
+        break;
+      case 'f':
+        get_storinfo();
         break;
       case 'S':
         //viewtdisk((uint32_t)atof(optarg));
