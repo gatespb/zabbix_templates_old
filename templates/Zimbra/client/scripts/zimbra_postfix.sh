@@ -1,17 +1,19 @@
 #!/bin/bash
 
 # DEPS: /usr/sbin/pflogsumm
+# DEPS: pygtail.py
 
 MAILLOG=/var/log/mail.log
 FPOS=/tmp/zabbix-postfix-offset.dat
 PFLOGSUMM=/usr/sbin/pflogsumm
+LOGTAIL=/usr/local/sbin/pygtail.py
 ZABBIX_CONF=/etc/zabbix/zabbix_agentd.conf
 
 function zsend {
   /usr/bin/zabbix_sender -c $ZABBIX_CONF -k $1 -o $2
 }
 
-DATA="$(/usr/sbin/logtail -f$MAILLOG -o$FPOS | $PFLOGSUMM -h 0 -u 0 --bounce_detail=0 --deferral_detail=0 --reject_detail=0 --no_no_msg_size --smtpd_warning_detail=0)"
+DATA="$(${LOGTAIL} -o ${FPOS} ${MAILLOG} | ${PFLOGSUMM} -h 0 -u 0 --bounce_detail=0 --deferral_detail=0 --reject_detail=0 --no_no_msg_size --smtpd_warning_detail=0)"
 
 zsend zimbra.pf.received $(echo -e "${DATA}" | grep -m 1 received | cut -f1 -d"r")
 zsend zimbra.pf.delivered $(echo -e "${DATA}" | grep -m 1 delivered | cut -f1 -d"d")
