@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
-    <version>2.0</version>
-    <date>2015-05-12T15:25:05Z</date>
+    <version>3.0</version>
+    <date>2016-03-04T12:09:44Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -26,7 +26,137 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                     <name>Quadstor</name>
                 </application>
             </applications>
-            <items/>
+            <items>
+                <item>
+                    <name>Process: ietd</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>proc.num[ietd]</key>
+                    <delay>300</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>Проверка процесса: ietd</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Quadstor</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Process: mdaemon</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>proc.num[mdaemon]</key>
+                    <delay>300</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>Проверка процесса: mdaemon</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Quadstor</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+                <item>
+                    <name>Process: postgres</name>
+                    <type>0</type>
+                    <snmp_community/>
+                    <multiplier>0</multiplier>
+                    <snmp_oid/>
+                    <key>proc.num[postgres]</key>
+                    <delay>300</delay>
+                    <history>7</history>
+                    <trends>365</trends>
+                    <status>0</status>
+                    <value_type>3</value_type>
+                    <allowed_hosts/>
+                    <units/>
+                    <delta>0</delta>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <formula>1</formula>
+                    <delay_flex/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <data_type>0</data_type>
+                    <authtype>0</authtype>
+                    <username/>
+                    <password/>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <description>Проверка процесса: postgres</description>
+                    <inventory_link>0</inventory_link>
+                    <applications>
+                        <application>
+                            <name>Quadstor</name>
+                        </application>
+                    </applications>
+                    <valuemap/>
+                    <logtimefmt/>
+                </item>
+            </items>
             <discovery_rules>
                 <discovery_rule>
                     <name>QUADStor VDisk discovery</name>
@@ -69,55 +199,12 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                     <description>QUADStor VDisk discovery</description>
                     <item_prototypes>
                         <item_prototype>
-                            <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} read</name>
-                            <type>0</type>
-                            <snmp_community/>
-                            <multiplier>0</multiplier>
-                            <snmp_oid/>
-                            <key>quadstorvirt.read_size[{#VDISKNAME}]</key>
-                            <delay>60</delay>
-                            <history>7</history>
-                            <trends>365</trends>
-                            <status>0</status>
-                            <value_type>3</value_type>
-                            <allowed_hosts/>
-                            <units>B/s</units>
-                            <delta>1</delta>
-                            <snmpv3_contextname/>
-                            <snmpv3_securityname/>
-                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
-                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
-                            <snmpv3_authpassphrase/>
-                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
-                            <snmpv3_privpassphrase/>
-                            <formula>1</formula>
-                            <delay_flex/>
-                            <params/>
-                            <ipmi_sensor/>
-                            <data_type>0</data_type>
-                            <authtype>0</authtype>
-                            <username/>
-                            <password/>
-                            <publickey/>
-                            <privatekey/>
-                            <port/>
-                            <description>Read Size: The amount of data read from the VDisk</description>
-                            <inventory_link>0</inventory_link>
-                            <applications>
-                                <application>
-                                    <name>Quadstor</name>
-                                </application>
-                            </applications>
-                            <valuemap/>
-                            <logtimefmt/>
-                        </item_prototype>
-                        <item_prototype>
                             <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} readops</name>
                             <type>0</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>quadstorvirt.read_ops[{#VDISKNAME}]</key>
+                            <key>quadstorvirt.read_ops[{#POOL},{#VDISKNAME}]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -153,14 +240,15 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
-                            <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} write</name>
+                            <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} read</name>
                             <type>0</type>
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>quadstorvirt.write_size[{#VDISKNAME}]</key>
+                            <key>quadstorvirt.read_size[{#POOL},{#VDISKNAME}]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -187,7 +275,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             <publickey/>
                             <privatekey/>
                             <port/>
-                            <description>Write Size: The amount of data written to the VDisk</description>
+                            <description>Read Size: The amount of data read from the VDisk</description>
                             <inventory_link>0</inventory_link>
                             <applications>
                                 <application>
@@ -196,6 +284,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                         <item_prototype>
                             <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} writeops</name>
@@ -203,7 +292,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             <snmp_community/>
                             <multiplier>0</multiplier>
                             <snmp_oid/>
-                            <key>quadstorvirt.write_ops[{#VDISKNAME}]</key>
+                            <key>quadstorvirt.write_ops[{#POOL},{#VDISKNAME}]</key>
                             <delay>60</delay>
                             <history>7</history>
                             <trends>365</trends>
@@ -239,6 +328,51 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                             </applications>
                             <valuemap/>
                             <logtimefmt/>
+                            <application_prototypes/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pool &quot;{#POOL}&quot; VDisk {#VDISKNAME} write</name>
+                            <type>0</type>
+                            <snmp_community/>
+                            <multiplier>0</multiplier>
+                            <snmp_oid/>
+                            <key>quadstorvirt.write_size[{#POOL},{#VDISKNAME}]</key>
+                            <delay>60</delay>
+                            <history>7</history>
+                            <trends>365</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>B/s</units>
+                            <delta>1</delta>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <formula>1</formula>
+                            <delay_flex/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <data_type>0</data_type>
+                            <authtype>0</authtype>
+                            <username/>
+                            <password/>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Write Size: The amount of data written to the VDisk</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Quadstor</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <application_prototypes/>
                         </item_prototype>
                     </item_prototypes>
                     <trigger_prototypes/>
@@ -270,7 +404,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                                     <type>0</type>
                                     <item>
                                         <host>template-quadstorvirt</host>
-                                        <key>quadstorvirt.read_size[{#VDISKNAME}]</key>
+                                        <key>quadstorvirt.read_size[{#POOL},{#VDISKNAME}]</key>
                                     </item>
                                 </graph_item>
                                 <graph_item>
@@ -282,7 +416,7 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
                                     <type>0</type>
                                     <item>
                                         <host>template-quadstorvirt</host>
-                                        <key>quadstorvirt.write_size[{#VDISKNAME}]</key>
+                                        <key>quadstorvirt.write_size[{#POOL},{#VDISKNAME}]</key>
                                     </item>
                                 </graph_item>
                             </graph_items>
@@ -296,4 +430,36 @@ https://github.com/gatespb/zabbix_templates/tree/master/templates/Quadstor</desc
             <screens/>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{template-quadstorvirt:proc.num[ietd].last()}=0</expression>
+            <name>Process ietd not found</name>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{template-quadstorvirt:proc.num[mdaemon].last()}=0</expression>
+            <name>Process mdaemon not found</name>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+        <trigger>
+            <expression>{template-quadstorvirt:proc.num[postgres].last()}&lt;5</expression>
+            <name>Process postgres not found</name>
+            <url/>
+            <status>0</status>
+            <priority>5</priority>
+            <description/>
+            <type>0</type>
+            <dependencies/>
+        </trigger>
+    </triggers>
 </zabbix_export>
